@@ -42,4 +42,11 @@ public class PhysicianController {
         String loggedPhysician =  physicianService.login(physician);
         return ResponseEntity.created(null).body(loggedPhysician);
     }
+    @PostMapping("/physician/consult")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<String> provideConsultation(@RequestBody Physician physician){
+
+        String consultingPhysician =  physicianService.provideConsultation(physician);
+        return ResponseEntity.created(null).body(consultingPhysician);
+    }
 }

@@ -32,4 +32,5 @@ public class PharmacistRepository implements IUser<Pharmacist> {
     public boolean hasRecord(String phoneNumber) {
         return pharmacists.containsKey(Helper.trimAndLower(phoneNumber));
     }
+
 }

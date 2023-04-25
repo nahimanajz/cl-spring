@@ -3,6 +3,7 @@ package com.example.springinit.pharmacist.repository;
 import com.example.springinit.common.db.CoreDB;
 import com.example.springinit.common.interfaces.IUser;
 import com.example.springinit.common.util.Helper;
+import com.example.springinit.pharmacist.model.Pharmacist;
 import com.example.springinit.physician.model.Physician;
 import org.springframework.stereotype.Repository;
 
@@ -31,5 +32,22 @@ public class PhysicianRepository implements IUser<Physician> {
     @Override
     public boolean hasRecord(String email) {
         return physicians.containsKey(Helper.trimAndLower(email));
+    }
+
+    /**
+     *   Physician with the access should be able to provide written  consultation,
+     *      otherwise they should be given a 401 warning: “An Authorized”
+     */
+
+    public String provideConsultation(Physician physician){
+        Physician physicianObj = physicians.values().stream()
+                .filter(p -> p.getEmail().equalsIgnoreCase(physician.getEmail()))
+                .findFirst()
+                .orElse(null);
+        if(physicianObj != null && physicianObj.getHasAccess()){
+            return "Your health result shows lack of enough water please work on that ";
+        }
+        return "Un Authorized";
+
     }
 }

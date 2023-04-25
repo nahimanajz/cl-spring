@@ -10,16 +10,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class PhysicianService {
     @Autowired
-    PhysicianRepository pharmacistRepo;
+    PhysicianRepository physicanRepo;
 
     public Physician register(Physician physician) throws Exception{
         ValidatePassword.validate("physician", physician.getPassword());
-        if(pharmacistRepo.hasRecord(physician.getEmail())){
+        if(physicanRepo.hasRecord(physician.getEmail())){
             throw new Exception("Physician email already exist");
         }
-        return pharmacistRepo.register(physician);
+        return physicanRepo.register(physician);
     }
     public String login(Physician physician){
-        return pharmacistRepo.login(physician);
+        return physicanRepo.login(physician);
+    }
+    public String provideConsultation(Physician physician){
+        return physicanRepo.provideConsultation(physician);
     }
 }

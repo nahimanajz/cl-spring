@@ -9,4 +9,8 @@ public class UserModel {
     private String gender;
     private String password;
     private boolean hasAccess = false;
+
+    public boolean getHasAccess() {
+        return this.hasAccess;
+    }
 }
