@@ -3,6 +3,7 @@ package com.example.springinit.patient.service;
 import com.example.springinit.common.util.ValidatePassword;
 import com.example.springinit.patient.model.Patient;
 import com.example.springinit.patient.repository.PatientReposistory;
+import com.example.springinit.pharmacist.model.Pharmacist;
 import com.example.springinit.physician.model.Physician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,15 @@ public class PatientService {
     }
 
     public Physician authorizePhysician(Physician physician) {
+
         return patientRepo.authorizePhysician(physician);
+    }
+    public List<Pharmacist> getPharmacists(){
+        return patientRepo.getPharmacists();
+    }
+
+    public Pharmacist authorizePharmacist(Pharmacist pharmacist) {
+
+        return patientRepo.authorizePharmacist(pharmacist);
     }
 }

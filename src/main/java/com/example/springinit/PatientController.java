@@ -56,12 +56,42 @@ public class PatientController {
     @PostMapping("/authorize/physician")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Physician> authorizePhysician(@RequestBody Physician physician){
-        Physician authedPhysician = patientService.authorizePhysician(physician);
-        URI uri = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/authedPhysician").buildAndExpand(authedPhysician)
-                .toUri();
-        return ResponseEntity.created(uri).body(authedPhysician);
+        try{
+            Physician authedPhysician = patientService.authorizePhysician(physician);
+            URI uri = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .path("/authedPhysician").buildAndExpand(authedPhysician)
+                    .toUri();
+            return ResponseEntity.created(uri).body(authedPhysician);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return ResponseEntity.created(null).body(physician);
+
+        }
+
+    }
+    @GetMapping("/pharmacists")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<Pharmacist>> getPharmacists(){
+        List<Pharmacist> pharmacists = patientService.getPharmacists();
+        return ResponseEntity.created(null).body(pharmacists);
+    }
+    @PostMapping("/authorize/pharmacists")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Pharmacist> authorizePharmacist(@RequestBody Pharmacist pharmacist){
+        try{
+            Pharmacist authedPharmacist = patientService.authorizePharmacist(pharmacist);
+            URI uri = ServletUriComponentsBuilder
+                    .fromCurrentRequest()
+                    .path("/authedPharmacist").buildAndExpand(authedPharmacist)
+                    .toUri();
+            return ResponseEntity.created(uri).body(authedPharmacist);
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return ResponseEntity.created(null).body(pharmacist);
+
+        }
+
     }
 
 }

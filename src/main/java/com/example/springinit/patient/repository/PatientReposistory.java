@@ -79,4 +79,27 @@ public class PatientReposistory implements IUser<Patient> {
         return authedPhysician;
 
     }
+    public List<Pharmacist> getPharmacists() {
+        return pharmacists
+                .values()
+                .stream()
+                .sorted((Comparator.comparing(Pharmacist::getAge)))
+                .collect(Collectors.toList());
+    }
+
+    public Pharmacist authorizePharmacist(Pharmacist pharmacist) {
+
+        Pharmacist authedPharmacist = pharmacists
+                .values()
+                .stream()
+                .filter(p->p.getPhoneNumber()
+                        .equalsIgnoreCase(pharmacist.getPhoneNumber()))
+                .findFirst().orElse(null);
+
+        if(authedPharmacist !=null){
+            authedPharmacist.setHasAccess(true);
+        }
+        return authedPharmacist;
+
+    }
 }
