@@ -11,13 +11,18 @@ public class PatientReposistory implements IUser<Patient> {
     HashMap<String, Patient> patients = CoreDB.getInstance().getData();
     @Override
     public String login(Patient patient) {
-        boolean isUserExist = patients.values().stream().anyMatch(e->e.getUsername().toLowerCase() == patient.getUsername().toLowerCase() &&
-                        e.getPassword().toLowerCase() == patient.getPassword().trim().toLowerCase());
-        return isUserExist? "User authorized": "User not found";
+        boolean isUserExist = patients.values().stream().allMatch(e ->
+                e.getUsername().equalsIgnoreCase(patient.getUsername()) &&
+                        e.getPassword().equalsIgnoreCase(patient.getPassword()));
+        if(isUserExist){
+            patient.setHasAccess(true);
+            return "User authorized";
+        }
+        return "Invalid credentials";
     }
 
     @Override
-    public Patient signup(Patient patient) {
+    public Patient register(Patient patient) {
          patients.put(trimAndLower(patient.getUsername()), patient);
          return patient;
     }

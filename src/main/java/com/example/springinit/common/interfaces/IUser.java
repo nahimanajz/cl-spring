@@ -4,6 +4,6 @@ import java.util.LinkedHashMap;
 
 public interface IUser<T> {
     String login(T userModel);
-    T signup(T userModel);
+    T register(T userModel);
     boolean hasRecord(String keyword);
 }

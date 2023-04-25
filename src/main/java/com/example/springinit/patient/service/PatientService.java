@@ -14,17 +14,17 @@ import java.util.List;
 public class PatientService {
     @Autowired
     PatientReposistory patientRepo;
-    public List<User> getAll(){
 
-        //return  patientRepo.getAll();
-        return null;
-    }
-    public Patient signup(Patient patient) throws Exception{
+    public Patient register(Patient patient) throws Exception{
         ValidatePassword.validate("patient", patient.getPassword());
         if(patientRepo.hasRecord(patient.getUsername())){
             throw new Exception("Username already exist");
         }
-        return patientRepo.signup(patient);
+        return patientRepo.register(patient);
+    }
+    public String login(Patient patient){
+        System.out.println("Logging username:==>"+patient.getUsername() +"Logging password===>"+patient.getPassword());
+        return patientRepo.login(patient);
     }
     public List<User> getPharamacists(){
         //TODO: Implement logic return pharmacist with userRole equal pharmacist

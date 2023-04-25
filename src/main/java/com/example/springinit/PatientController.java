@@ -18,15 +18,15 @@ public class PatientController {
     @Autowired
     PatientService patientService;
 
-    @PostMapping("/patient/signup")
+    @PostMapping("/patient/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> signup(@RequestBody Patient patient){
+    public ResponseEntity<String> register(@RequestBody Patient patient){
 
          try{
-             Patient createdPatient = patientService.signup(patient);
+             Patient createdPatient = patientService.register(patient);
              URI uri = ServletUriComponentsBuilder
                      .fromCurrentRequest()
-                     .path("/username").buildAndExpand(createdPatient.getUsername())
+                     .path("/username").buildAndExpand(createdPatient)
                      .toUri();
 
              return ResponseEntity.created(uri).body(createdPatient.toString());
@@ -35,6 +35,13 @@ public class PatientController {
              return ResponseEntity.ofNullable(ex.getMessage());
          }
 
+    }
+    @PostMapping("/patient/login")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<String> login(@RequestBody Patient patient){
+
+       String loggedPatient =  patientService.login(patient);
+        return ResponseEntity.created(null).body(loggedPatient);
     }
 
 }
