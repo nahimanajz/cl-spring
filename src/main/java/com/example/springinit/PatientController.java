@@ -76,7 +76,7 @@ public class PatientController {
         List<Pharmacist> pharmacists = patientService.getPharmacists();
         return ResponseEntity.created(null).body(pharmacists);
     }
-    @PostMapping("/authorize/pharmacists")
+    @PostMapping("/authorize/pharmacist")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Pharmacist> authorizePharmacist(@RequestBody Pharmacist pharmacist){
         try{
