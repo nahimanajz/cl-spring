@@ -2,13 +2,22 @@ package com.example.springinit.patient.repository;
 
 import com.example.springinit.common.db.CoreDB;
 import com.example.springinit.common.interfaces.IUser;
+import com.example.springinit.common.util.Helper;
 import com.example.springinit.patient.model.Patient;
 import org.springframework.stereotype.Repository;
+import com.example.springinit.pharmacist.model.Pharmacist;
+import com.example.springinit.physician.model.Physician;
 
 import java.util.HashMap;
+import java.util.List;
+
 @Repository
 public class PatientReposistory implements IUser<Patient> {
     HashMap<String, Patient> patients = CoreDB.getInstance().getData();
+    HashMap<String, Pharmacist>  pharmacists = CoreDB.getInstance().getPharmacists();
+    HashMap<String, Physician>  physicians = CoreDB.getInstance().getPhycians();
+
+
     @Override
     public String login(Patient patient) {
         boolean isUserExist = patients.values().stream().allMatch(e ->
@@ -23,16 +32,29 @@ public class PatientReposistory implements IUser<Patient> {
 
     @Override
     public Patient register(Patient patient) {
-         patients.put(trimAndLower(patient.getUsername()), patient);
+         patients.put(Helper.trimAndLower(patient.getUsername()), patient);
          return patient;
     }
 
     @Override
     public boolean hasRecord(String username) {
-        return patients.containsKey(trimAndLower(username));
+        return patients.containsKey(Helper.trimAndLower(username));
     }
-    private String trimAndLower(String text){
-        return text.trim().toLowerCase();
 
+
+    public List<Pharmacist> getPharmacist() {
+        return pharmacists.values().stream().toList();
+    }
+    public Pharmacist AuthorizePharmacist(Pharmacist pharmacist) {
+        // TODO: set Has access to true where email;
+
+        boolean hasPharmacist = pharmacists.values().stream().allMatch(e-> e.getEmail().equalsIgnoreCase(pharmacist.getEmail()));
+        if(hasPharmacist) {
+            pharmacist.setHasAccess(true);
+        }
+        return pharmacist;
+    }
+    public List<Physician> getPhysicians() {
+        return CoreDB.getInstance().getPhycians().values().stream().toList();
     }
 }

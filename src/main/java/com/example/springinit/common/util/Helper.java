@@ -25,4 +25,7 @@ public class Helper {
         System.out.println("Checking credentials attent" + loopedUser.getEmail());
         return false;
     }
+    public static String trimAndLower(String text){
+        return text.trim().toLowerCase();
+    }
 }
