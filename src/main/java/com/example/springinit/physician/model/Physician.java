@@ -5,5 +5,5 @@ import lombok.Data;
 
 @Data
 public class Physician extends UserModel {
-    private String phoneNumber;
+    private String email;
 }

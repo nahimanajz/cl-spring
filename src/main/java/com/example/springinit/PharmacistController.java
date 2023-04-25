@@ -26,7 +26,7 @@ public class PharmacistController {
             Pharmacist createdPharmacist = pharmacistService.register(pharmacist);
             URI uri = ServletUriComponentsBuilder
                     .fromCurrentRequest()
-                    .path("/email").buildAndExpand(createdPharmacist)
+                    .path("/phoneNumber").buildAndExpand(createdPharmacist)
                     .toUri();
 
             return ResponseEntity.created(uri).body(createdPharmacist.toString());

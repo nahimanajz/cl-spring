@@ -25,7 +25,7 @@ public class PhysicianController {
             Physician createdPhysician = physicianService.register(physician);
             URI uri = ServletUriComponentsBuilder
                     .fromCurrentRequest()
-                    .path("/phoneNumber").buildAndExpand(createdPhysician)
+                    .path("/email").buildAndExpand(createdPhysician)
                     .toUri();
 
             return ResponseEntity.created(uri).body(createdPhysician.toString());

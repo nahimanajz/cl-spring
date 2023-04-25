@@ -8,8 +8,10 @@ import org.springframework.stereotype.Repository;
 import com.example.springinit.pharmacist.model.Pharmacist;
 import com.example.springinit.physician.model.Physician;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class PatientReposistory implements IUser<Patient> {
@@ -48,13 +50,33 @@ public class PatientReposistory implements IUser<Patient> {
     public Pharmacist AuthorizePharmacist(Pharmacist pharmacist) {
         // TODO: set Has access to true where email;
 
-        boolean hasPharmacist = pharmacists.values().stream().allMatch(e-> e.getEmail().equalsIgnoreCase(pharmacist.getEmail()));
+        boolean hasPharmacist = pharmacists.values().stream().allMatch(e-> e.getPhoneNumber().equalsIgnoreCase(pharmacist.getPhoneNumber()));
         if(hasPharmacist) {
             pharmacist.setHasAccess(true);
         }
         return pharmacist;
     }
     public List<Physician> getPhysicians() {
-        return CoreDB.getInstance().getPhycians().values().stream().toList();
+        return physicians
+                .values()
+                .stream()
+                .sorted((Comparator.comparing(Physician::getName)))
+                .collect(Collectors.toList());
+    }
+
+    public Physician authorizePhysician(Physician physician) {
+
+        Physician authedPhysician = physicians
+                .values()
+                .stream()
+                .filter(p->p.getEmail()
+               .equalsIgnoreCase(physician.getEmail()))
+              .findFirst().orElse(null);
+
+        if(authedPhysician !=null){
+            authedPhysician.setHasAccess(true);
+        }
+        return authedPhysician;
+
     }
 }

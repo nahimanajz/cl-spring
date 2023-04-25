@@ -13,7 +13,7 @@ public class PharmacistRepository implements IUser<Pharmacist> {
     @Override
     public String login(Pharmacist pharmacist) {
         boolean isUserExist = pharmacists.values().stream().allMatch(e ->
-                e.getEmail().equalsIgnoreCase(pharmacist.getEmail()) &&
+                e.getPhoneNumber().equalsIgnoreCase(pharmacist.getPhoneNumber()) &&
                         e.getPassword().equalsIgnoreCase(pharmacist.getPassword()));
         if(isUserExist){
             pharmacist.setHasAccess(true);
@@ -24,12 +24,12 @@ public class PharmacistRepository implements IUser<Pharmacist> {
 
     @Override
     public Pharmacist register(Pharmacist pharmacist) {
-        pharmacists.put(Helper.trimAndLower(pharmacist.getEmail()), pharmacist);
+        pharmacists.put(Helper.trimAndLower(pharmacist.getPhoneNumber()), pharmacist);
         return pharmacist;
     }
 
     @Override
-    public boolean hasRecord(String email) {
-        return pharmacists.containsKey(Helper.trimAndLower(email));
+    public boolean hasRecord(String phoneNumber) {
+        return pharmacists.containsKey(Helper.trimAndLower(phoneNumber));
     }
 }

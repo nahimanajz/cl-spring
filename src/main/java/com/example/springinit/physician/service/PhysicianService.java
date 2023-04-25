@@ -14,8 +14,8 @@ public class PhysicianService {
 
     public Physician register(Physician physician) throws Exception{
         ValidatePassword.validate("physician", physician.getPassword());
-        if(pharmacistRepo.hasRecord(physician.getPhoneNumber())){
-            throw new Exception("Physician phone number  already exist");
+        if(pharmacistRepo.hasRecord(physician.getEmail())){
+            throw new Exception("Physician email already exist");
         }
         return pharmacistRepo.register(physician);
     }

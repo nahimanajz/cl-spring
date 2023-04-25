@@ -3,6 +3,7 @@ package com.example.springinit.patient.service;
 import com.example.springinit.common.util.ValidatePassword;
 import com.example.springinit.patient.model.Patient;
 import com.example.springinit.patient.repository.PatientReposistory;
+import com.example.springinit.physician.model.Physician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pharmacy.model.User;
@@ -30,9 +31,12 @@ public class PatientService {
         //TODO: Implement logic return pharmacist with userRole equal pharmacist
         return  null;
     }
-    public List<User> getPhysician(){
-        //TODO: Implement logic to return pharmacist with userRole equal
-        return null;
+    public List<Physician> getPhysicians(){
+
+        return patientRepo.getPhysicians();
     }
 
+    public Physician authorizePhysician(Physician physician) {
+        return patientRepo.authorizePhysician(physician);
+    }
 }

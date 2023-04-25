@@ -13,7 +13,7 @@ public class PhysicianRepository implements IUser<Physician> {
     @Override
     public String login(Physician physician) {
         boolean isUserExist = physicians.values().stream().allMatch(e ->
-                e.getPhoneNumber().equalsIgnoreCase(physician.getPhoneNumber()) &&
+                e.getEmail().equalsIgnoreCase(physician.getEmail()) &&
                         e.getPassword().equalsIgnoreCase(physician.getPassword()));
         if(isUserExist){
             physician.setHasAccess(true);
@@ -24,7 +24,7 @@ public class PhysicianRepository implements IUser<Physician> {
 
     @Override
     public Physician register(Physician physician) {
-        physicians.put(Helper.trimAndLower(physician.getPhoneNumber()), physician);
+        physicians.put(Helper.trimAndLower(physician.getEmail()), physician);
         return physician;
     }
 
