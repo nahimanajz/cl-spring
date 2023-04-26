@@ -1,13 +1,12 @@
 package com.example.springinit;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileOutputStream;
@@ -50,4 +49,18 @@ public class FileController {
        }
         return ResponseEntity.created(null).body("File uploaded successfully");
     }
+
+    @GetMapping("/download")
+    public ResponseEntity<byte[]> downloadFile() throws IOException {
+
+        ClassPathResource resource = new ClassPathResource("assets/"+MEDICINES_FILE);
+        InputStream inputStream = resource.getInputStream();
+
+        byte[] data = FileCopyUtils.copyToByteArray(inputStream);
+
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType("text/csv"))
+                .header("Content-Disposition", "attachment; filename=" + MEDICINES_FILE)
+                .body(data);
+}
 }
