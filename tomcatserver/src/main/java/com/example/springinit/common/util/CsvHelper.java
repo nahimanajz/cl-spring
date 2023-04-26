@@ -1,16 +1,17 @@
 package com.example.springinit.common.util;
 
 import com.example.springinit.common.model.Medicine;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class CsvHelper {
     public static List<Medicine> getMedecines() {
-        String csvFile = "/Users/janvier/IdeaProjects/springInit/src/main/resources/assets/medicines.csv";
+        String csvFile = "/Users/janvier/IdeaProjects/springInit/tomcatserver/src/main/resources/assets/medicines.csv";
         String line = "";
         String csvSplitBy = ",";
         List<Medicine> medicines = new ArrayList<>();

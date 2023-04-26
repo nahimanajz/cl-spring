@@ -32,13 +32,13 @@ public class PharmacistService {
          *
          *
          * */
-        if(pharmaRepo.provideMedicine(pharmacist)== false){
+        if(pharmaRepo.provideMedicine(pharmacist)){
             //TODO: Read medicine from csv and provide result
-            CsvHelper.getMedecines();
+            List<Medicine> medicines = CsvHelper.getMedecines();
 
-//            for (Medicine medicine : medicines) {
-//                System.out.println(medicine.toString());
-//            }
+            for (Medicine medicine : medicines) {
+                System.out.println(medicine.toString());
+            }
         }
         return "Un authorized";
     }

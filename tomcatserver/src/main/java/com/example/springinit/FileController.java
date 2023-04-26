@@ -20,7 +20,7 @@ import java.nio.file.StandardOpenOption;
 @RestController
 public class FileController {
     private static final String MEDICINES_FILE = "medicines.csv";
-    private static final String ASSETS_FOLDER = "/Users/janvier/IdeaProjects/springInit/src/main/resources/assets/";
+    private static final String ASSETS_FOLDER = "/Users/janvier/IdeaProjects/springInit/tomcatserver/src/main/resources/assets/";
 
     @PostMapping("/upload")
     @ResponseStatus(HttpStatus.OK)
