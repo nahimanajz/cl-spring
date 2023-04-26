@@ -34,8 +34,8 @@ public class PharmacistService {
          * */
         if(pharmaRepo.provideMedicine(pharmacist)== false){
             //TODO: Read medicine from csv and provide result
-            List<Medicine> medicines = CsvHelper.getMedecines();
- System.out.println(medicines.toArray());
+            CsvHelper.getMedecines();
+
 //            for (Medicine medicine : medicines) {
 //                System.out.println(medicine.toString());
 //            }

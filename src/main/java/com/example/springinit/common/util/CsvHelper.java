@@ -19,18 +19,19 @@ public class CsvHelper {
 
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(csvSplitBy);
-                String medName = fields[0];
-                double medPrice = Double.parseDouble(fields[1]);
-                String medExpiration = fields[2];
-                Medicine medicine = new Medicine(medName, medPrice, medExpiration);
-                medicines.add(medicine);
+                if (fields.length >= 3) {
+                    String medName = fields[0];
+                    String medPrice = fields[1];
+                    String medExpiration = fields[2];
+                    Medicine medicine = new Medicine(medName, medPrice, medExpiration);
+                    medicines.add(medicine);
+                }
             }
-            return medicines;
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return medicines;
+
     }
 
 }
