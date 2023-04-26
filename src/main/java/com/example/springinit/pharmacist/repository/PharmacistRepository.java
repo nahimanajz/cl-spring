@@ -4,6 +4,7 @@ import com.example.springinit.common.db.CoreDB;
 import com.example.springinit.common.interfaces.IUser;
 import com.example.springinit.common.util.Helper;
 import com.example.springinit.pharmacist.model.Pharmacist;
+import com.example.springinit.physician.model.Physician;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -33,4 +34,20 @@ public class PharmacistRepository implements IUser<Pharmacist> {
         return pharmacists.containsKey(Helper.trimAndLower(phoneNumber));
     }
 
+    /**
+     *
+     * @param pharmacist
+     * if pharmacist exist and has access == true then he can provide medicine
+     * @return boolean
+     */
+   public boolean provideMedicine(Pharmacist pharmacist){
+       Pharmacist pharmacistObj = pharmacists.values().stream()
+               .filter(p -> p.getPhoneNumber().equalsIgnoreCase(pharmacist.getPhoneNumber()))
+               .findFirst()
+               .orElse(null);
+       if(pharmacistObj != null && pharmacistObj.getHasAccess()){
+           return true;
+       }
+       return false;
+   }
 }

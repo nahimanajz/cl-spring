@@ -3,6 +3,7 @@ package com.example.springinit;
 import com.example.springinit.patient.model.Patient;
 import com.example.springinit.pharmacist.model.Pharmacist;
 import com.example.springinit.pharmacist.service.PharmacistService;
+import com.example.springinit.physician.model.Physician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,5 +45,12 @@ public class PharmacistController {
         return ResponseEntity.created(null).body(loggedPharmacist);
     }
 /** TODO: add remaining endpoint */
+@PostMapping("/pharmacist/medicines")
+@ResponseStatus(HttpStatus.OK)
+public ResponseEntity<String> provideMedicine(@RequestBody Pharmacist pharmacist){
+
+    String medicines =  pharmacistService.provideMedicine(pharmacist);
+    return ResponseEntity.created(null).body(medicines);
+}
 
 }
