@@ -26,18 +26,16 @@ public class PharmacistService {
         return pharmaRepo.login(pharmacist);
     }
     /** TODO: DO consultation of chosen patient  and return message **/
-    public String provideMedicine(Pharmacist pharmacist){
-        // TODO: Get list of medicine and return to this output[It can be better to do this in service]
-        /**
-         *
-         *
-         * */
+    public String provideMedicine(Pharmacist pharmacist, String medicineName){
         if(pharmaRepo.provideMedicine(pharmacist)){
             //TODO: Read medicine from csv and provide result
             List<Medicine> medicines = CsvHelper.getMedecines();
 
             for (Medicine medicine : medicines) {
-                System.out.println(medicine.toString());
+                //System.out.println(medicine.getMedName());
+                if(medicine.getMedName().equalsIgnoreCase(medicineName)){
+                    return "Patient is consulted to have these medicine ==>" + medicineName + " <==Price==>  " + medicine.getMedPrice()+"<== Expiration Date ==> "+medicine.getMedExpiration();
+                }
             }
         }
         return "Un authorized";

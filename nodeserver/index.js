@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import env from "dotenv";
 import bodyParser from 'body-parser';
-import routes from './server/routes/routeIndex';
+import routes from './routes/index';
 
 
 env.config();

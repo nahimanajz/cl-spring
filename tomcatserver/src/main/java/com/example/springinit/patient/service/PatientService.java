@@ -25,7 +25,7 @@ public class PatientService {
         return patientRepo.register(patient);
     }
     public String login(Patient patient){
-        System.out.println("Logging username:==>"+patient.getUsername() +"Logging password===>"+patient.getPassword());
+
         return patientRepo.login(patient);
     }
     public List<User> getPharamacists(){

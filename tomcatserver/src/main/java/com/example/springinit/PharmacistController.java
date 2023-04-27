@@ -7,10 +7,7 @@ import com.example.springinit.physician.model.Physician;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -47,9 +44,9 @@ public class PharmacistController {
 /** TODO: add remaining endpoint */
 @PostMapping("/pharmacist/medicines")
 @ResponseStatus(HttpStatus.OK)
-public ResponseEntity<String> provideMedicine(@RequestBody Pharmacist pharmacist){
+public ResponseEntity<String> provideMedicine(@RequestBody Pharmacist pharmacist, @RequestParam String medicineName){
 
-    String medicines =  pharmacistService.provideMedicine(pharmacist);
+    String medicines =  pharmacistService.provideMedicine(pharmacist, medicineName);
     return ResponseEntity.created(null).body(medicines);
 }
 
