@@ -26,10 +26,20 @@ class FileController {
   async download(req, res) {
     try {
 
-      const { data } = await axios.get(`${TOMCAT_URL}/download`);
-      return res.status(200).json({ data });
+      const response = await axios({
+        url: `${TOMCAT_URL}/download/transcription`,
+        method: "GET",
+        responseType: "stream"
+      });
+      const headers = {
+        "Content-disposition": "attachment; filename=transcription.csv"
+      };
+      res.writeHead(200, headers);
+      response.data.pipe(res);
+     // return res.status(200).json({ data });
     } catch (error) {
-      res.status(401).json({ message: error.message });
+      console.error(error.message);
+      return res.status(401).json({ message: error.message });
     }
   }
 

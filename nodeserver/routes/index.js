@@ -29,7 +29,7 @@ routes.post('/patient/authorize/pharmacist', patient.authorizePharmacist);
 const upload = multer({ dest: 'uploads/' });
 
 routes.post('/file/upload', upload.single('medicines'), fileObject.upload);
-routes.post('/file/download', fileObject.download);
+routes.get('/file/download', fileObject.download);
 routes.get('/file/all/medicines', fileObject.getAllMedicines)
 
 export default routes;
