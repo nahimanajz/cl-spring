@@ -49,6 +49,7 @@ public class FileController {
                FileCopyUtils.copy(inputStream, outputStream);
            }
        }catch (Exception ex) {
+           System.out.println("Failing upload:"+ex.getMessage());
            return ResponseEntity.created(null).body(ex.getMessage());
        }
         return ResponseEntity.created(null).body("File uploaded successfully");

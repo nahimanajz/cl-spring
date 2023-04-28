@@ -1,25 +1,27 @@
 import axios from 'axios'
 import { TOMCAT_URL } from '../util';
-
-
+import FormData from 'form-data'
+import fs from 'fs'
 
 class FileController {
   async upload(req, res) {
-    console.log(req.file);
-    const medicines = req.file
     try {
-
-      const { data } = await axios({
-        method: 'post',
-        url: `${TOMCAT_URL}/upload`,
-        data: { medicines }
-      })
+      const { file } = req;
+      const formData = new FormData();
+      formData.append('medicines', fs.createReadStream(req.file.path),{
+        filename: req.file.originalname
+      });
+     
+      const {data} = await axios.post(`${TOMCAT_URL}/upload`, formData, {
+        headers: formData.getHeaders()
+      });
       console.log(data)
-      return res.status(200).json({ data })
+      return res.status(200).json({ data });
     } catch (error) {
-      return res.status(500).json({ data: error.message })
+      console.log(error)
+      return res.status(500).json({ data: error.message });
     }
-  }
+  };
 
   async download(req, res) {
     try {
