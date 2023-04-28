@@ -6,27 +6,27 @@ import { toast } from "react-toastify";
 const MedicinesList = () => {
     const [medicines, setMedicines] = useState([]);
     const [file, setFile] = useState(null);
-   
+
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
         const formData = new FormData();
         formData.append("medicines", file);
-    
-        fetch( `${SERVER_URL}/file/upload`, {
-          method: "POST",
-          body: formData,
+
+        fetch(`${SERVER_URL}/file/upload`, {
+            method: "POST",
+            body: formData,
         })
-          .then((response) => response.json())
-          .then((data) => {
-            toast(data);
-          })
-          .catch((error) => {
-            toast(error);
-          });
-      };
-    
-    
+            .then((response) => response.json())
+            .then((data) => {
+                toast(data.data);
+            })
+            .catch((error) => {
+                toast(error);
+            });
+    };
+
+
 
 
     const handlePrescribe = async (medicineName) => {
@@ -52,33 +52,34 @@ const MedicinesList = () => {
     }, []);
 
     return (
-        <div className="w-full h-full">
-            <div className="min-h-screen flex items-center justify-center bg-blue-200">
-            <form onSubmit={handleSubmit} className="w-96 mx-auto">
-      <div className="mb-4">
-        <label htmlFor="file" className="block mb-2 font-bold text-gray-700">
-          Choose a CSV file:
-        </label>
-        <input
-          type="file"
-          id="file"
-          accept=".csv"
-          className="p-2 border border-gray-300 rounded w-full"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-      </div>
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        disabled={!file}
-      >
-        Upload
-      </button>
-    </form>
+        <div className="h-screen flex flex-col">
+            <div className="h-1/4 bg-grey-100 shadow-lg  bg-blend-lighten md:bg-blend-darken">
+                <form onSubmit={handleSubmit} className="w-96 mx-auto">
+                    <div className="mb-4">
+                        <label htmlFor="file" className="block mb-2 font-bold text-gray-700">
+                            Choose a CSV file:
+                        </label>
+                        <input
+                            type="file"
+                            id="file"
+                            accept=".csv"
+                            className="p-2 border border-gray-300 rounded w-full"
+                            onChange={(e) => setFile(e.target.files[0])}
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-5"
+                        disabled={!file}
+                    >
+                        Upload
+                    </button>
+                </form>
             </div>
-            <div>
+            <div className="flex-1 flex">
+                <div className="flex-1 bg-green-100"></div>
 
-                <table className="w-full h-full">
+                <table className="w-full mt-20">
                     <thead>
                         <tr>
                             <th className="border p-4">Medicine Name</th>
@@ -107,7 +108,9 @@ const MedicinesList = () => {
                 </table>
             </div>
         </div>
-    );
+
+    )
+
 };
 
 export default MedicinesList;

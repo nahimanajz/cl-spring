@@ -8,17 +8,17 @@ class FileController {
     try {
       const { file } = req;
       const formData = new FormData();
-      formData.append('medicines', fs.createReadStream(req.file.path),{
+      formData.append('medicines', fs.createReadStream(req.file.path), {
         filename: req.file.originalname
       });
-     
-      const {data} = await axios.post(`${TOMCAT_URL}/upload`, formData, {
+
+      const { data } = await axios.post(`${TOMCAT_URL}/upload`, formData, {
         headers: formData.getHeaders()
       });
-      console.log(data)
+
       return res.status(200).json({ data });
     } catch (error) {
-      console.log(error)
+
       return res.status(500).json({ data: error.message });
     }
   };
@@ -32,7 +32,7 @@ class FileController {
       res.status(401).json({ message: error.message });
     }
   }
-  
+
   async getAllMedicines(req, res) {
     try {
       const { data } = await axios.get(`${TOMCAT_URL}/all/medicines`);
