@@ -1,4 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { SERVER_URL, checkThenNavigate } from "../../utils";
 
 export function Login({showDashboard}) {
     const [formData, setFormData] = useState({
@@ -6,12 +9,17 @@ export function Login({showDashboard}) {
         password: ""
 
     });
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        
-        showDashboard(true)
+        console.log(formData)
+        try {
+            const { data:{data} } = await axios.post(`${SERVER_URL}/patient/login`, formData)
+            checkThenNavigate(data, showDashboard, true)
+           
+        } catch (error) {
+            toast(error.message);
+        }
     };
-
     const handleChange = (e) => {
         setFormData((prevFormData) => ({
             ...prevFormData,

@@ -1,19 +1,28 @@
+import axios from "axios";
 import { useState } from "react";
- 
-export function Register({activateLogin}) {
+import { SERVER_URL, checkThenNavigate } from "../../utils";
+import { toast } from "react-toastify";
+
+export function Register({ activateLogin }) {
     const [formData, setFormData] = useState({
         name: "",
         age: "",
         gender: "",
-        username:"",
+        username: "",
         password: "",
         hasAccess: false
     });
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData); // or submit form data to server here
-        activateLogin(2)
+      
+        try {
+            const { data:{data} } = await axios.post(`${SERVER_URL}/patient/register`, formData)
+            checkThenNavigate(data,activateLogin, 2)
+           
+        } catch (error) {
+            toast(error.message);
+        }
     };
 
     const handleChange = (e) => {
@@ -90,7 +99,7 @@ export function Register({activateLogin}) {
             </div>
 
             <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3 mb-6 md:mb-0">
+                <div className="w-full px-3 mb-6 md:mb-0">
                     <label
                         htmlFor="username"
                         className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
