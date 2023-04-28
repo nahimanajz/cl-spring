@@ -15,7 +15,7 @@ routes.post('/pharmacist/medicines/:medicineName', pharmacist.provideMedicine);
 
 routes.post('/physician/login', physician.login);
 routes.post('/physician/register', physician.register);
-routes.post('/physician/consult', physician.provideConsultation);
+routes.post('/physician/consult/:consultation', physician.provideConsultation);
 
 
 routes.post('/patient/login', patient.login);

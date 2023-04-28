@@ -22,7 +22,7 @@ public class PhysicianService {
     public String login(Physician physician){
         return physicanRepo.login(physician);
     }
-    public String provideConsultation(Physician physician){
-        return physicanRepo.provideConsultation(physician);
+    public String provideConsultation(Physician physician, String consultation){
+        return physicanRepo.provideConsultation(physician, consultation);
     }
 }

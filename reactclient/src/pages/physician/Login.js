@@ -5,7 +5,7 @@ import { SERVER_URL, checkThenNavigate } from "../../utils";
 
 export function Login({showDashboard}) {
     const [formData, setFormData] = useState({
-        phoneNumber: "",
+        email: "",
         password: ""
 
     });
@@ -13,9 +13,9 @@ export function Login({showDashboard}) {
         e.preventDefault();
         console.log(formData)
         try {
-            const { data:{data} } = await axios.post(`${SERVER_URL}/pharmacist/login`, formData)
+            const { data:{data} } = await axios.post(`${SERVER_URL}/physician/login`, formData)
             checkThenNavigate(data, showDashboard, true)
-            localStorage.setItem("phoneNumber", formData.phoneNumber)
+            localStorage.setItem("email",formData.email)
            
         } catch (error) {
             toast(error.message);
@@ -32,15 +32,15 @@ export function Login({showDashboard}) {
             <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full px-3 mb-6 md:mb-0">
                     <label
-                        htmlFor="phoneNumber"
+                        htmlFor="email"
                         className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     >
-                        PhoneNumber
+                        Email
                     </label>
                     <input
                         type="text"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
+                        name="email"
+                        value={formData.email}
                         onChange={handleChange}
                         className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         required

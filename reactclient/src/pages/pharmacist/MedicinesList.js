@@ -31,7 +31,7 @@ const MedicinesList = () => {
 
     const handlePrescribe = async (medicineName) => {
         const phoneNumber= '07853213732';
-        return await axios.post(`${SERVER_URL}/pharmacist/medicines/${medicineName}`, { phoneNumber: phoneNumber ||localStorage.getItem("pharmacistPhoneNumber") })
+        return await axios.post(`${SERVER_URL}/pharmacist/medicines/${medicineName}`, { phoneNumber: phoneNumber ||localStorage.getItem("phoneNumber") })
             .then(response => {
                 toast(response.data.data)
             })

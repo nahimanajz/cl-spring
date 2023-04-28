@@ -4,6 +4,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { Patient } from './pages/patient/Patient';
 import PharmacistList from "./pages/pharmacist/PharmacistList";
 import { Pharmacist } from "./pages/pharmacist/Pharmacist";
+import { Physician } from "./pages/physician/Physician";
+
 
 function App() {
 
@@ -18,7 +20,7 @@ function App() {
     },
     {
       path: '/physician',
-      element: <div>Physician</div>,
+      element: <Physician />,
     },
     {
       path: '/patient',

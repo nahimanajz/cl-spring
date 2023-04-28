@@ -14,7 +14,8 @@ export function Login({showDashboard}) {
         console.log(formData)
         try {
             const { data:{data} } = await axios.post(`${SERVER_URL}/patient/login`, formData)
-            checkThenNavigate(data, showDashboard, true, toast)
+            checkThenNavigate(data, showDashboard, true)
+            localStorage.setItem("username", formData.username)
            
         } catch (error) {
             toast(error.message);

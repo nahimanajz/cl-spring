@@ -39,13 +39,13 @@ public class PhysicianRepository implements IUser<Physician> {
      *      otherwise they should be given a 401 warning: “An Authorized”
      */
 
-    public String provideConsultation(Physician physician){
+    public String provideConsultation(Physician physician, String consultation){
         Physician physicianObj = physicians.values().stream()
                 .filter(p -> p.getEmail().equalsIgnoreCase(physician.getEmail()))
                 .findFirst()
                 .orElse(null);
         if(physicianObj != null && physicianObj.getHasAccess()){
-            return "Your health result shows lack of enough water please work on that ";
+            return consultation;
         }
         return "Un Authorized";
 
