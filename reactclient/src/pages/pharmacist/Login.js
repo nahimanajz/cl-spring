@@ -35,7 +35,7 @@ export function Login({showDashboard}) {
                         htmlFor="phoneNumber"
                         className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     >
-                        Username
+                        PhoneNumber
                     </label>
                     <input
                         type="text"

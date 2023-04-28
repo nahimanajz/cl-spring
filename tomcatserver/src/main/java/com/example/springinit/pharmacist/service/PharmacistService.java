@@ -34,6 +34,7 @@ public class PharmacistService {
             for (Medicine medicine : medicines) {
                 //System.out.println(medicine.getMedName());
                 if(medicine.getMedName().equalsIgnoreCase(medicineName)){
+                    CsvHelper.createTranscription(medicine);
                     return "Patient is consulted to have these medicine ==>" + medicineName + " <==Price==>  " + medicine.getMedPrice()+"<== Expiration Date ==> "+medicine.getMedExpiration();
                 }
             }

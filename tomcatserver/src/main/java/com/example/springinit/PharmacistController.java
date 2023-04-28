@@ -42,10 +42,10 @@ public class PharmacistController {
         return ResponseEntity.created(null).body(loggedPharmacist);
     }
 /** TODO: add remaining endpoint */
-@PostMapping("/pharmacist/medicines")
+@PostMapping("/pharmacist/provide/medicines")
 @ResponseStatus(HttpStatus.OK)
 public ResponseEntity<String> provideMedicine(@RequestBody Pharmacist pharmacist, @RequestParam String medicineName){
-
+     System.out.println("Medicine==>"+medicineName+"PhoneNumber"+pharmacist.getPhoneNumber());
     String medicines =  pharmacistService.provideMedicine(pharmacist, medicineName);
     return ResponseEntity.created(null).body(medicines);
 }

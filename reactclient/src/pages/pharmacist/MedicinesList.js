@@ -30,12 +30,13 @@ const MedicinesList = () => {
 
 
     const handlePrescribe = async (medicineName) => {
-        return await axios.post(`${SERVER_URL}/pharmacist/medicines/${medicineName}`, { phoneNumber: localStorage.getItem("pharmacistPhoneNumber") })
+        const phoneNumber= '07853213732';
+        return await axios.post(`${SERVER_URL}/pharmacist/medicines/${medicineName}`, { phoneNumber: phoneNumber ||localStorage.getItem("pharmacistPhoneNumber") })
             .then(response => {
-                console.log(response.data);
+                toast(response.data.data)
             })
             .catch(error => {
-                console.error(error);
+                toast(error.data)
             });
     }
     const fetchData = async () => {
@@ -89,8 +90,8 @@ const MedicinesList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {medicines.map((medicine) => (
-                            <tr key={medicine.id}>
+                        {medicines.map((medicine, index) => (
+                            <tr key={index}>
                                 <td className="border p-4">{medicine.medName}</td>
                                 <td className="border p-4">{medicine.medPrice}</td>
                                 <td className="border p-4">{medicine.medExpiration}</td>

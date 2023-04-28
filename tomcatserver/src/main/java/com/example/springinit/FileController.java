@@ -55,10 +55,10 @@ public class FileController {
         return ResponseEntity.created(null).body("File uploaded successfully");
     }
 
-    @GetMapping("/download")
+    @GetMapping("/download/transcription")
     public ResponseEntity<byte[]> downloadFile() throws IOException {
 
-        ClassPathResource resource = new ClassPathResource("assets/"+MEDICINES_FILE);
+        ClassPathResource resource = new ClassPathResource("assets/"+"prescription.csv");
         InputStream inputStream = resource.getInputStream();
 
         byte[] data = FileCopyUtils.copyToByteArray(inputStream);

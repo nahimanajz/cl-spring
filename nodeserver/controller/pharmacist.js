@@ -20,11 +20,14 @@ class Pharmacy {
       }
     }
     provideMedicine = async (req, res) => {
+      console.log(`phonenumber ==>${req.body.phoneNumber}===>${req.params.medicineName}`)
         try {
-          const { data } = await axios.post(`${TOMCAT_URL}/pharmacist/medicines?medicineName=${req.query.medicineName}`, req.body, headers);
+          const { data } = await axios.post(`${TOMCAT_URL}/pharmacist/provide/medicines?medicineName=${req.params.medicineName}`, req.body, headers);
+          console.log(data)
           return res.status(200).json({ data });
         } catch (error) {
-          res.status(500).json({ message: error.message });
+          console.log(error)
+          return res.status(500).json({ message: error.message });
         }
       }
 }
