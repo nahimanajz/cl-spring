@@ -5,19 +5,18 @@ import Dashboard from './Dashboard';
 
 const tabs = [
     { id: 1, name: "Register" },
-    { id: 2, name: " Login" },
-    { id: 3, name: " Dashboard" }
-
+    { id: 2, name: " Login" }
 ];
 
 
 export const Patient = (props) => {
     const [activeTab, setActiveTab] = useState(tabs[0].id);
+    const[showDashboard, setShowDashboard] = useState(false)
     const handleTabClick = (tabId) => {
         setActiveTab(tabId);
     };
 
-    if (1 == 1) {
+    if (showDashboard) {
         return <Dashboard />
     } else {
         return (
@@ -37,9 +36,9 @@ export const Patient = (props) => {
                     ))}
                 </div>
 
-                {activeTab === 1 && <Register />}
-                {activeTab === 2 && <Login />}
-                {activeTab === 3 && <Dashboard />}
+                {activeTab === 1 && <Register activateLogin={handleTabClick}/>}
+                {activeTab === 2 && <Login showDashboard={setShowDashboard}/>}
+              
             </div>
         )
     }

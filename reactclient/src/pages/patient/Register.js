@@ -1,6 +1,6 @@
 import { useState } from "react";
-
-export function Register() {
+ 
+export function Register({activateLogin}) {
     const [formData, setFormData] = useState({
         name: "",
         age: "",
@@ -13,6 +13,7 @@ export function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(formData); // or submit form data to server here
+        activateLogin(2)
     };
 
     const handleChange = (e) => {

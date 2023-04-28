@@ -1,48 +1,37 @@
-import './App.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Patient } from './pages/patient/Patient';
+import PharmacistList from "./pages/pharmacist/PharmacistList";
 
 function App() {
+
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <div>Home</div>,
     },
     {
-      path: "/pharmacist",
+      path: '/pharmacist',
       element: <div>Pharmacist</div>,
     },
     {
-      path: "/physician",
+      path: '/physician',
       element: <div>Physician</div>,
     },
     {
-      path: "/patient",
+      path: '/patient',
       element: <Patient />,
-      children:[
+      children: [
         {
-      
-          path:"/pharmacists", 
-          element:<div> pharmacists</div>
+          path: 'pharmacists', // Corrected path
+          element: <PharmacistList />, // Updated display text
         },
         {
-          path:"physician", 
-          element:<div> Physician</div>
-        }
-        
-      ]
-    },
-    /** Replace with pharmacy routes */
-    {
-      path: "/test",
-      element: <div> test...</div>,
-    },
-
-    {
-      path: "***",
-      element: <div>NOT Found</div>,
+          path: 'physicians', // Corrected path
+          element: <div>List Physician</div>, // Updated display text
+        }  
+      ],
     },
   ]);
   
@@ -61,7 +50,7 @@ function App() {
         pauseOnHover
         theme="colored" />
       <div className="flex flex-col h-screen">
-        <div className="h-20 bg-blue-400">
+        <div className="h-20 bg-blue-600">
           <div className='text-sm font-medium text-gray-900 mb-4"'>Online Pharmacy</div>
           <div>
             <nav className="flex sm:justify-center space-x-4 mb-4">
@@ -79,7 +68,7 @@ function App() {
           </div>
         </div>
         <div className="flex-1">
-          {/* <RouterProvider router={router} /> */}
+          <RouterProvider router={router} />
         </div>
       </div>
     </>

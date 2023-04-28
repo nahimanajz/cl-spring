@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Login() {
+export function Login({showDashboard}) {
     const [formData, setFormData] = useState({
         username: "",
         password: ""
@@ -8,7 +8,8 @@ export function Login() {
     });
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData); 
+        
+        showDashboard(true)
     };
 
     const handleChange = (e) => {
