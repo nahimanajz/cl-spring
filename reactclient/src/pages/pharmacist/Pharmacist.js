@@ -2,16 +2,12 @@ import React, { useState } from 'react'
 import { Register } from './Register'
 import { Login } from './Login'
 import Dashboard from './Dashboard';
-
-export const tabs = [
-    { id: 1, name: "Register" },
-    { id: 2, name: " Login" }
-];
+import { tabs } from '../patient/Patient';
 
 
-export const Patient = (props) => {
+export const Pharmacist = (props) => {
     const [activeTab, setActiveTab] = useState(tabs[0].id);
-    const[showDashboard, setShowDashboard] = useState(false)
+    const [showDashboard, setShowDashboard] = useState(false)
     const handleTabClick = (tabId) => {
         setActiveTab(tabId);
     };
@@ -36,9 +32,9 @@ export const Patient = (props) => {
                     ))}
                 </div>
 
-                {activeTab === 1 && <Register activateLogin={handleTabClick}/>}
-                {activeTab === 2 && <Login showDashboard={setShowDashboard}/>}
-              
+                {activeTab === 1 && <Register activateLogin={handleTabClick} />}
+                {activeTab === 2 && <Login showDashboard={setShowDashboard} />}
+
             </div>
         )
     }

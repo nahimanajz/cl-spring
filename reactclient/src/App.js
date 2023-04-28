@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Patient } from './pages/patient/Patient';
 import PharmacistList from "./pages/pharmacist/PharmacistList";
+import { Pharmacist } from "./pages/pharmacist/Pharmacist";
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
     },
     {
       path: '/pharmacist',
-      element: <div>Pharmacist</div>,
+      element: <Pharmacist />,
     },
     {
       path: '/physician',

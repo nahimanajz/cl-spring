@@ -8,7 +8,7 @@ export function Register({ activateLogin }) {
         name: "",
         age: "",
         gender: "",
-        username: "",
+        phoneNumber: "",
         password: "",
         hasAccess: false
     });
@@ -17,7 +17,7 @@ export function Register({ activateLogin }) {
         e.preventDefault();
       
         try {
-            const { data:{data} } = await axios.post(`${SERVER_URL}/patient/register`, formData)
+            const { data:{data} } = await axios.post(`${SERVER_URL}/pharmacist/register`, formData)
             checkThenNavigate(data,activateLogin, 2, toast)
            
         } catch (error) {
@@ -101,16 +101,16 @@ export function Register({ activateLogin }) {
             <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full px-3 mb-6 md:mb-0">
                     <label
-                        htmlFor="username"
+                        htmlFor="phoneNumber"
                         className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                     >
-                        Username
+                        PhoneNumber
                     </label>
                     <input
                         type="text"
 
-                        name="username"
-                        value={formData.username}
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
                         onChange={handleChange}
                         className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         required
@@ -134,27 +134,6 @@ export function Register({ activateLogin }) {
                     />
                 </div>
             </div>
-
-            <div className="flex flex-wrap -mx-3 mb-6">
-                <div className="w-full px-3 mb-6 md:mb-0">
-                    <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
-                        Has Access
-                    </label>
-                    <div className="flex items-center">
-                        <input
-                            type="checkbox"
-                            name="hasAccess"
-                            checked={formData.hasAccess}
-                            onChange={handleChange}
-                            className="form-checkbox h-5 w-5 text-gray-600"
-                        />
-                        <label className="ml-2 block text-gray-700 font-bold">
-                            Allow access
-                        </label>
-                    </div>
-                </div>
-            </div>
-
             <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full px-3 mb-6 md:mb-0">
                     <button

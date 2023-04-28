@@ -22,6 +22,7 @@ const PatientTabs = ({ tabs }) => {
         ))}
       </div>
 
+      {/* Rendering current selected tab content */}
       <div className="border-solid border-1 border-blue-500 mt-4 ml-20 w-screen">
       {tabs[activeTab].content}
       </div>

@@ -1,5 +1,8 @@
 package com.example.springinit;
 
+import com.example.springinit.common.model.Medicine;
+import com.example.springinit.common.util.CsvHelper;
+import com.example.springinit.physician.model.Physician;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,6 +19,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.List;
 
 @RestController
 public class FileController {
@@ -63,4 +67,9 @@ public class FileController {
                 .header("Content-Disposition", "attachment; filename=" + MEDICINES_FILE)
                 .body(data);
 }
+    @GetMapping("/all/medicines")
+    public ResponseEntity<List<Medicine>> getAllMedicines(){
+        return ResponseEntity.created(null).body(CsvHelper.getMedecines());
+    }
+
 }

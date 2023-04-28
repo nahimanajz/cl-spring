@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PharmacistItem from '../../components/PharmacistItem';
-import { toast } from 'react-toastify';
 import axios from 'axios'
 
 function PharmacistList() {
