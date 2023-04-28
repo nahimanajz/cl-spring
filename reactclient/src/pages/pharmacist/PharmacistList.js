@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PharmacistItem from '../../components/PharmacistItem';
 import axios from 'axios'
+import { SERVER_URL } from '../../utils';
 
 function PharmacistList() {
   const [pharmacists, setPharmacists] = useState([{
@@ -63,7 +64,7 @@ function PharmacistList() {
   const [error, setError] = useState()
 
   useEffect(() => {
-    axios.get("http://localhost:9000/api/v1/pharmacist")
+    axios.get(`${SERVER_URL}/pharmacist`)
       .then((response) => {
         setPharmacists(response.data);
       })

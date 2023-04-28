@@ -5,7 +5,7 @@ import { SERVER_URL } from "../utils";
 
 const PhysicianItem = ({ item: { name, age, gender, hasAccess, email } }) => {
   const authorize = email => {
-    axios.post(`${SERVER_URL}`)
+    axios.post(`${SERVER_URL}/patient/authorize/physician`, {email})
       .then(response => {
         console.log(response.data);
       })
