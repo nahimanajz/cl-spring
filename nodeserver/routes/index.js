@@ -21,7 +21,7 @@ routes.post('/physician/consult/:consultation', physician.provideConsultation);
 routes.post('/patient/login', patient.login);
 routes.post('/patient/register', patient.register);
 routes.get('/patient/physicians', patient.getPhysicians);
-routes.get('/patient/physicians', patient.getPharmacists);
+routes.get('/patient/pharmacists', patient.getPharmacists);
 routes.post('/patient/authorize/physician', patient.authorizePhysician);
 routes.post('/patient/authorize/pharmacist', patient.authorizePharmacist);
 

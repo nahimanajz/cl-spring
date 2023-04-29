@@ -2,12 +2,13 @@ import { UserCircleIcon } from "@heroicons/react/outline";
 import axios from "axios";
 import { MdPhoneIphone } from "react-icons/md";
 import { SERVER_URL } from "../utils";
+import { toast } from "react-toastify";
 
 const PharmacistItem = ({ item: { name, age, gender, hasAccess, PhoneNumber } }) => {
   const authorize = phoneNumber => {
-    axios.post(`${SERVER_URL}`)
+    axios.post(`${SERVER_URL}/patient/authorize/pharmacist`,{phoneNumber})
       .then(response => {
-        console.log(response.data);
+        toast(response.data.data);
       })
       .catch(error => {
         console.error(error.message);

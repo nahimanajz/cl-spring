@@ -39,6 +39,7 @@ class Patient {
       const { data } = await axios.get(`${TOMCAT_URL}/pharmacists`);
       return res.status(200).json({ data });
     } catch (error) {
+      console.log(error)
       res.status(500).json({ message: error.message });
     }
   }

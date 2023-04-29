@@ -4,77 +4,24 @@ import axios from 'axios'
 import { SERVER_URL } from '../../utils';
 
 function PharmacistList() {
-  const [pharmacists, setPharmacists] = useState([{
-    name: "example Name",
-    age: 23,
-    gender: "Male",
-    hasAccess: false,
-    PhoneNumber: "078523453"
-  },
-   {
-    name: "example Name",
-    age: 23,
-    gender: "Male",
-    hasAccess: false,
-    PhoneNumber: "078523453"
-  },
-  {
-    name: "example Name",
-    age: 23,
-    gender: "Male",
-    hasAccess: false,
-    PhoneNumber: "078523453"
-  },
-   {
-    name: "example Name",
-    age: 23,
-    gender: "Male",
-    hasAccess: false,
-    PhoneNumber: "078523453"
-  },
-  {
-    name: "example Name",
-    age: 23,
-    gender: "Male",
-    hasAccess: false,
-    PhoneNumber: "078523453"
-  },
-   {
-    name: "example Name",
-    age: 23,
-    gender: "Male",
-    hasAccess: false,
-    PhoneNumber: "078523453"
-  },
-  {
-    name: "example Name",
-    age: 23,
-    gender: "Male",
-    hasAccess: false,
-    PhoneNumber: "078523453"
-  },
-   {
-    name: "example Name",
-    age: 23,
-    gender: "Male",
-    hasAccess: false,
-    PhoneNumber: "078523453"
-  }
-]);
+  const [pharmacists, setPharmacists] = useState();
   const [error, setError] = useState()
-
-  useEffect(() => {
-    axios.get(`${SERVER_URL}/pharmacist`)
+  const fetchPharmacists =async () => {
+    await axios.get(`${SERVER_URL}/patient/pharmacists`)
       .then((response) => {
-        setPharmacists(response.data);
+        setPharmacists(response.data.data);
       })
       .catch((error) => {
         setError("Something went wrong")
       });
+  }
+
+  useEffect(() => {
+    fetchPharmacists()
   }, []);
   return (
     <div className="grid grid-cols-4 gap-10 min-w-min">
-      {pharmacists.length ? (
+      {pharmacists?.length ? (
         pharmacists.map((item, index) => (
           <div key={index}>
             <PharmacistItem item={item} />

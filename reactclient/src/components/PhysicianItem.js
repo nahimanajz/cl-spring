@@ -2,12 +2,14 @@ import { UserCircleIcon } from "@heroicons/react/outline";
 import axios from "axios";
 import { MdAlternateEmail } from "react-icons/md";
 import { SERVER_URL } from "../utils";
+import { toast } from "react-toastify";
 
 const PhysicianItem = ({ item: { name, age, gender, hasAccess, email } }) => {
   const authorize = email => {
     axios.post(`${SERVER_URL}/patient/authorize/physician`, {email})
       .then(response => {
         console.log(response.data);
+       toast(response.data.data)
       })
       .catch(error => {
         console.error(error.message);
