@@ -4,11 +4,11 @@ import { MdPhoneIphone } from "react-icons/md";
 import { SERVER_URL } from "../utils";
 import { toast } from "react-toastify";
 
-const PharmacistItem = ({ item: { name, age, gender, hasAccess, PhoneNumber } }) => {
+const PharmacistItem = ({ item: { name, age, gender, hasAccess, phoneNumber } }) => {
   const authorize = phoneNumber => {
     axios.post(`${SERVER_URL}/patient/authorize/pharmacist`,{phoneNumber})
       .then(response => {
-        toast(response.data.data);
+        toast(response.data);
       })
       .catch(error => {
         console.error(error.message);
@@ -60,13 +60,13 @@ const PharmacistItem = ({ item: { name, age, gender, hasAccess, PhoneNumber } })
         {/* Phone section */}
         <div className="flex items-center text-gray-500">
           <MdPhoneIphone className="mr-2 h-5 w-5" />
-          <span>{PhoneNumber}</span>
+          <span>{phoneNumber}</span>
         </div>
       </div>
       {!hasAccess ? (
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10"
-          onClick={() => authorize(PhoneNumber)}>
+          onClick={() => authorize(phoneNumber)}>
           Authorize
         </button>
 
