@@ -46,10 +46,10 @@ function App() {
         pauseOnHover
         theme="colored" />
       <div className="flex flex-col min-h-min bg-blend-color-dodge">
-        <div className="h-20 bg-blue-500">
-          <h2 className='text-sm font-medium text-yellow-50 mb-4"'>Online Pharmacy</h2>
+        <div className="h-20 bg-blue-600 flex flex-row items-center justify-between">
+          <nav className='text-gray-100 font-semibold text-2xl tracking-widest uppercase'>Online Pharmacy</nav>
 
-          <nav className="flex sm:justify-center space-x-4 mb-4 ease-in duration-300">
+          <nav className="flex sm:justify-center space-x-4 ease-in duration-300">
             {navs.map(([title, url]) => (
               <a
                 key={title}
@@ -60,6 +60,7 @@ function App() {
               </a>
             ))}
           </nav>
+          <nav />
 
         </div>
         <div className="flex-1">

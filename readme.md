@@ -9,3 +9,9 @@ Installation guide using docker
 - docker run node-server         `Running node server`
 -docker rmi -f node-server         `Delete node server imamge`
 
+- creating an image to push to dockerhub 
+```
+docker build -t <your-dockerhub-username>/<image-name>:<version> .
+docker push <your-dockerhub-username>/<image-name>:<version>
+
+```
