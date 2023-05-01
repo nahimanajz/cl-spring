@@ -1,0 +1,5 @@
+services:
+  tomcat:
+      build: tomcat
+      ports:
+      - 8080:8080

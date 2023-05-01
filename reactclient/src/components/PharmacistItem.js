@@ -3,6 +3,7 @@ import axios from "axios";
 import { MdPhoneIphone } from "react-icons/md";
 import { SERVER_URL } from "../utils";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 const PharmacistItem = ({ item: { name, age, gender, hasAccess, phoneNumber } }) => {
   const authorize = phoneNumber => {
@@ -14,6 +15,7 @@ const PharmacistItem = ({ item: { name, age, gender, hasAccess, phoneNumber } })
         console.error(error.message);
       });
   }
+  useEffect(() => {},[hasAccess])
 
   return (
     <div className="bg-white rounded-lg px-6 py-8 ring-1 ring-slate-900/5 shadow-xl flex flex-col justify-around">

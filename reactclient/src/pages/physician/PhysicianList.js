@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import axios from 'axios'
 import { SERVER_URL } from '../../utils';
 import PhysicianItem from '../../components/PhysicianItem';

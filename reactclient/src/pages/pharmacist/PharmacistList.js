@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import PharmacistItem from '../../components/PharmacistItem';
 import axios from 'axios'
 import { SERVER_URL } from '../../utils';
+import { toast } from 'react-toastify';
 
 function PharmacistList() {
   const [pharmacists, setPharmacists] = useState();
-  const [error, setError] = useState()
   const fetchPharmacists =async () => {
     await axios.get(`${SERVER_URL}/patient/pharmacists`)
       .then((response) => {
         setPharmacists(response.data.data);
       })
       .catch((error) => {
-        setError("Something went wrong")
+        toast(error.message)
       });
   }
 
