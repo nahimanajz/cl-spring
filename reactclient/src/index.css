@@ -3,13 +3,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Customize the styles */
-button:focus {
+ button:focus {
   outline: none !important;
   box-shadow: none !important;
-}
-button {
-  &:last-child {
+} 
+
+button :last-child {
     border-right-width: 0;
   }
-}
+ 
