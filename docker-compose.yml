@@ -1,5 +1,15 @@
+version: "3.4"
+
 services:
-  tomcat:
-      build: tomcat
-      ports:
-      - 8080:8080
+  pharmacynodeserver:
+    image: 0781209/pharmacy-nodeserver 
+    ports:
+      - "9001:9000"
+  pharmacyclient:
+    image: 0781209/pharamcy-client
+    ports:
+      - "3001:3000"
+  pharmacytomcatserver:
+    image: 0781209/pharmacy-tomcat-server
+    ports:
+      - "8080:8080"

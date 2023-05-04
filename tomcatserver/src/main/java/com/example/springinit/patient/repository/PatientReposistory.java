@@ -19,7 +19,11 @@ public class PatientReposistory implements IUser<Patient> {
     HashMap<String, Pharmacist>  pharmacists = CoreDB.getInstance().getPharmacists();
     HashMap<String, Physician>  physicians = CoreDB.getInstance().getPhycians();
 
-
+    @Override
+    public Patient register(Patient patient) {
+        patients.put(Helper.trimAndLower(patient.getUsername()), patient);
+        return patient;
+    }
     @Override
     public String login(Patient patient) {
         boolean isUserExist = patients.values().stream().allMatch(e ->
@@ -32,11 +36,7 @@ public class PatientReposistory implements IUser<Patient> {
         return "Invalid credentials";
     }
 
-    @Override
-    public Patient register(Patient patient) {
-         patients.put(Helper.trimAndLower(patient.getUsername()), patient);
-         return patient;
-    }
+
 
     @Override
     public boolean hasRecord(String username) {

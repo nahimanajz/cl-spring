@@ -15,3 +15,4 @@ docker build -t <your-dockerhub-username>/<image-name>:<version> .
 docker push <your-dockerhub-username>/<image-name>:<version>
 
 ```
+#renaming an image
